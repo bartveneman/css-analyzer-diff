@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Calculate the difference between two sets of CSS stats ",
   "main": "diff.js",
+  "engines": {
+    "node": ">= 7"
+  },
   "scripts": {
     "test": "ava && xo"
   },
