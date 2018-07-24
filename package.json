@@ -1,0 +1,50 @@
+{
+  "name": "css-analyzer-diff",
+  "version": "0.1.0",
+  "description": "Calculate the difference between two sets of CSS stats ",
+  "main": "diff.js",
+  "engines": {
+    "node": ">= 7"
+  },
+  "scripts": {
+    "test": "ava && xo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bartveneman/css-analyzer-diff.git"
+  },
+  "keywords": [
+    "css",
+    "stats",
+    "diff"
+  ],
+  "author": "Bart Veneman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bartveneman/css-analyzer-diff/issues"
+  },
+  "homepage": "https://github.com/bartveneman/css-analyzer-diff#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "prettier": "^1.13.7",
+    "xo": "^0.21.1"
+  },
+  "xo": {
+    "semicolon": false
+  },
+  "prettier": {
+    "useTabs": true,
+    "semi": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "overrides": [
+      {
+        "files": "*.json",
+        "options": {
+          "useTabs": false
+        }
+      }
+    ]
+  }
+}

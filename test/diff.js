@@ -1,0 +1,36 @@
+const test = require('ava')
+const diff = require('../diff.js')
+
+const defaultFixture = {a: 1, b: 2}
+const fixtureWithUpdatedValues = {a: 3, b: 4}
+const fixtureWithAddedProp = {a: 1, b: 2, c: 3}
+const fixtureWithIncompatibleProps = {a: 1, b: true}
+
+test('It does not throw errors when passing simple, valid input', t => {
+	t.notThrows(() => {
+		return diff(defaultFixture, fixtureWithUpdatedValues)
+	})
+})
+
+test('An error is thrown if incompatible stat types are given', t => {
+	t.throws(() => {
+		return diff(defaultFixture, fixtureWithIncompatibleProps)
+	})
+})
+
+// Shallow testing of result structure. More in-depth testing
+// of the structure is done in other tests
+test('It should return the correct structure', t => {
+	const result = diff(defaultFixture, fixtureWithUpdatedValues)
+	t.true(result instanceof Map)
+	t.deepEqual(['a', 'b'], [...result.keys()])
+
+	result.forEach(stat => {
+		t.is('boolean', typeof stat.changed)
+	})
+})
+
+test('It should return the correct structure when new props are added', t => {
+	const result = diff(defaultFixture, fixtureWithAddedProp)
+	t.deepEqual(['a', 'b', 'c'], [...result.keys()])
+})
