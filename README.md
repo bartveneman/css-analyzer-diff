@@ -14,9 +14,9 @@ const [firstStats, secondStats] = await Promise.all([
 );
 const changes = differ(firstStats, secondStats);
 
-//=> Returns a Map with all changes
-// Map {
-//   'values.colors.unique' => [
+//=> Returns an object with all changes
+// {
+//   'values.colors.unique': [
 //     {
 //       value: 'brown',
 //       removed: true,
