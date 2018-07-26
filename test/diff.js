@@ -22,15 +22,15 @@ test('An error is thrown if incompatible stat types are given', t => {
 // of the structure is done in other tests
 test('It should return the correct structure', t => {
 	const result = diff(defaultFixture, fixtureWithUpdatedValues)
-	t.true(result instanceof Map)
-	t.deepEqual(['a', 'b'], [...result.keys()])
+	t.is('object', typeof result)
+	t.deepEqual(['a', 'b'], Object.keys(result))
 
-	result.forEach(stat => {
+	Object.values(result).forEach(stat => {
 		t.is('boolean', typeof stat.changed)
 	})
 })
 
 test('It should return the correct structure when new props are added', t => {
 	const result = diff(defaultFixture, fixtureWithAddedProp)
-	t.deepEqual(['a', 'b', 'c'], [...result.keys()])
+	t.deepEqual(['a', 'b', 'c'], Object.keys(result))
 })

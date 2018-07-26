@@ -4,8 +4,9 @@ const diffLists = require('./src/diff-lists.js')
 function diffStats(statsA, statsB) {
 	// This assumes that the statsB is newer than statsA
 	return Object.entries(statsB).reduce((diff, [key, value]) => {
-		return diff.set(key, diffStat(statsA[key], value))
-	}, new Map())
+		diff[key] = diffStat(statsA[key], value)
+		return diff
+	}, {})
 }
 
 function diffStat(statA, statB) {
