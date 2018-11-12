@@ -122,3 +122,105 @@ test('It handles the second listable stat being absent in one of the stats', t =
 
 	t.deepEqual(actual, expectedDiff)
 })
+
+test('It sorts fontsizes correctly after comparing them', t => {
+	const actual = diff(
+		['0', '32px', '4em'],
+		['0', '.5em', '1em', '3rem'],
+		'values.fontsizes.unique'
+	)
+	const expectedDiff = {
+		changed: true,
+		diff: [
+			{
+				value: '0',
+				removed: false,
+				added: false,
+				changed: false
+			},
+			{
+				value: '.5em',
+				removed: false,
+				added: true,
+				changed: true
+			},
+			{
+				value: '1em',
+				removed: false,
+				added: true,
+				changed: true
+			},
+			{
+				value: '32px',
+				removed: true,
+				added: false,
+				changed: true
+			},
+			{
+				value: '3rem',
+				removed: false,
+				added: true,
+				changed: true
+			},
+			{
+				value: '4em',
+				removed: true,
+				added: false,
+				changed: true
+			}
+		]
+	}
+
+	t.deepEqual(actual, expectedDiff)
+})
+
+test('It sorts colors correctly after comparing them', t => {
+	const actual = diff(
+		['red', 'orange', 'green', 'purple'],
+		['red', 'yellow', 'green', 'blue', 'purple'],
+		'values.colors.unique'
+	)
+	const expectedDiff = {
+		changed: true,
+		diff: [
+			{
+				value: 'red',
+				changed: false,
+				added: false,
+				removed: false
+			},
+			{
+				value: 'orange',
+				changed: true,
+				added: false,
+				removed: true
+			},
+			{
+				value: 'yellow',
+				changed: true,
+				added: true,
+				removed: false
+			},
+			{
+				value: 'green',
+				changed: false,
+				added: false,
+				removed: false
+			},
+			{
+				value: 'blue',
+				changed: true,
+				added: true,
+				removed: false
+			},
+			{
+				value: 'purple',
+				changed: false,
+				added: false,
+				removed: false
+			}
+		]
+	}
+
+	t.deepEqual(actual, expectedDiff)
+})

@@ -24,7 +24,10 @@
     "url": "https://github.com/bartveneman/css-analyzer-diff/issues"
   },
   "homepage": "https://github.com/bartveneman/css-analyzer-diff#readme",
-  "dependencies": {},
+  "dependencies": {
+    "color-sorter": "^2.2.1",
+    "css-unit-sort": "^1.1.1"
+  },
   "devDependencies": {
     "ava": "^0.25.0",
     "prettier": "^1.13.7",

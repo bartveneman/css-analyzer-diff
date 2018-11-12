@@ -4,12 +4,12 @@ const diffLists = require('./src/diff-lists.js')
 function diffStats(statsA, statsB) {
 	// This assumes that the statsB is newer than statsA
 	return Object.entries(statsB).reduce((diff, [key, value]) => {
-		diff[key] = diffStat(statsA[key], value)
+		diff[key] = diffStat(statsA[key], value, key)
 		return diff
 	}, {})
 }
 
-function diffStat(statA, statB) {
+function diffStat(statA, statB, key) {
 	if (typeof statB === 'undefined') {
 		statB = statA
 		statA = undefined
@@ -33,7 +33,7 @@ function diffStat(statA, statB) {
 
 	if (Array.isArray(statB)) {
 		statA = statA === null ? [] : statA
-		return diffLists(statA, statB)
+		return diffLists(statA, statB, key)
 	}
 
 	return null
