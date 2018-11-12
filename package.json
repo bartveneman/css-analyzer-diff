@@ -1,6 +1,6 @@
 {
   "name": "css-analyzer-diff",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Calculate the difference between two sets of CSS stats ",
   "main": "diff.js",
   "engines": {
