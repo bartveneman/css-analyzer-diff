@@ -1,5 +1,8 @@
 const cssUnitSort = require('css-unit-sort')
 const cssColorSort = require('color-sorter')
+const {
+	caseInsensitive: caseInsensitiveCompare
+} = require('string-natural-compare')
 
 const METRICS_SORTED_BY_CSS_UNIT = ['values.fontsizes.unique']
 const METRICS_SORTED_BY_COLOR = [
@@ -13,7 +16,7 @@ function getSortingFnByKey(key) {
 	}
 
 	return (a, b) => {
-		return b.toLowerCase().localeCompare(a.toLowerCase())
+		return caseInsensitiveCompare(b, a)
 	}
 }
 

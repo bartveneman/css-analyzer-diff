@@ -123,6 +123,44 @@ test('It handles the second listable stat being absent in one of the stats', t =
 	t.deepEqual(actual, expectedDiff)
 })
 
+test('It sorts selectors/values/properties correctly', t => {
+	const actual = diff(
+		['a:after', 'a:before'],
+		['a:after', 'aa:before', 'b:before']
+	)
+	const expectedDiff = {
+		changed: true,
+		diff: [
+			{
+				value: 'a:after',
+				changed: false,
+				removed: false,
+				added: false
+			},
+			{
+				value: 'a:before',
+				changed: true,
+				removed: true,
+				added: false
+			},
+			{
+				value: 'aa:before',
+				added: true,
+				changed: true,
+				removed: false
+			},
+			{
+				value: 'b:before',
+				added: true,
+				changed: true,
+				removed: false
+			}
+		]
+	}
+
+	t.deepEqual(actual, expectedDiff)
+})
+
 test('It sorts fontsizes correctly after comparing them', t => {
 	const actual = diff(
 		['0', '32px', '4em'],
