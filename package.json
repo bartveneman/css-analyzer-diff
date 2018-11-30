@@ -26,7 +26,8 @@
   "homepage": "https://github.com/bartveneman/css-analyzer-diff#readme",
   "dependencies": {
     "color-sorter": "^2.2.1",
-    "css-unit-sort": "^1.1.1"
+    "css-unit-sort": "^1.1.1",
+    "string-natural-compare": "^2.0.3"
   },
   "devDependencies": {
     "ava": "^0.25.0",
