@@ -12,29 +12,29 @@ const METRICS_SORTED_BY_COLOR = [
 
 function getSortingFnByKey(key) {
 	if (METRICS_SORTED_BY_CSS_UNIT.includes(key)) {
-		return cssUnitSort.sortFn
+		return (a, b) => cssUnitSort.sortFn(a, b) * -1
 	}
 
-	return (a, b) => {
-		return caseInsensitiveCompare(b, a)
+	if (METRICS_SORTED_BY_COLOR.includes(key)) {
+		return cssColorSort.sortFn
 	}
+
+	return (a, b) => caseInsensitiveCompare(a, b)
 }
 
 function mergeLists(listA, listB, key) {
 	// Create a single list out of both lists that will take their
 	// unique values
-	const merged = listA
-		.concat(listB)
-		// Remove duplicate items
-		.filter((value, index, self) => {
-			return self.lastIndexOf(value) === index
-		})
-		// Re-sort the items
-		.sort(getSortingFnByKey(key))
-		.reverse()
-
-	// Until color-sorter supports a sortFn, we must sort the list at this place
-	return METRICS_SORTED_BY_COLOR.includes(key) ? cssColorSort(merged) : merged
+	return (
+		listA
+			.concat(listB)
+			// Remove duplicate items
+			.filter((value, index, self) => {
+				return self.lastIndexOf(value) === index
+			})
+			// Re-sort the items
+			.sort(getSortingFnByKey(key))
+	)
 }
 
 function diffLists(listA, listB, key) {
