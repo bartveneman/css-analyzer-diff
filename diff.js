@@ -1,5 +1,6 @@
 const diffNumbers = require('./src/diff-numbers.js')
 const diffLists = require('./src/diff-lists.js')
+const diffStrings = require('./src/diff-strings.js')
 
 function diffStats(statsA, statsB) {
 	// This assumes that the statsB is newer than statsA
@@ -34,6 +35,10 @@ function diffStat(statA, statB, key) {
 	if (Array.isArray(statB)) {
 		statA = statA === null ? [] : statA
 		return diffLists(statA, statB, key)
+	}
+
+	if (typeof statA === 'string') {
+		return diffStrings(statA, statB)
 	}
 
 	return null
