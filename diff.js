@@ -37,7 +37,7 @@ function diffStat(statA, statB, key) {
 		return diffLists(statA, statB, key)
 	}
 
-	if (typeof statA === 'string') {
+	if (typeof statB === 'string') {
 		return diffStrings(statA, statB)
 	}
 

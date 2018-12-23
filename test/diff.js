@@ -34,3 +34,13 @@ test('It should return the correct structure when new props are added', t => {
 	const result = diff(defaultFixture, fixtureWithAddedProp)
 	t.deepEqual(['a', 'b', 'c'], Object.keys(result))
 })
+
+test('It should diff strings correctly after they are introduced in css-analyzer v2.0.0', t => {
+	t.deepEqual(diff({}, {'selectors.identifiers.max.value': '.my-selector'}), {
+		'selectors.identifiers.max.value': {
+			changed: true,
+			oldValue: null,
+			newValue: '.my-selector'
+		}
+	})
+})
