@@ -32,7 +32,7 @@
   "devDependencies": {
     "ava": "^1.0.1",
     "prettier": "^1.15.3",
-    "xo": "^0.21.1"
+    "xo": "^0.23.0"
   },
   "xo": {
     "semicolon": false,
