@@ -9,6 +9,7 @@ const METRICS_SORTED_BY_COLOR = [
 	'values.colors.unique',
 	'values.colors.duplicates'
 ]
+const METRICS_SORTED_BY_INTEGER = ['values.zindexes.unique']
 
 function getSortingFnByKey(key) {
 	if (METRICS_SORTED_BY_CSS_UNIT.includes(key)) {
@@ -17,6 +18,10 @@ function getSortingFnByKey(key) {
 
 	if (METRICS_SORTED_BY_COLOR.includes(key)) {
 		return cssColorSort.sortFn
+	}
+
+	if (METRICS_SORTED_BY_INTEGER.includes(key)) {
+		return (a, b) => a - b
 	}
 
 	return (a, b) => caseInsensitiveCompare(a, b)

@@ -29,7 +29,7 @@ test('It calculates the diff for two different stats correctly', t => {
 		['unchangedValue', 'removedValue'],
 		['addedValue', 'unchangedValue']
 	)
-	const expectedDiff = [
+	const expected = [
 		{
 			value: 'addedValue',
 			removed: false,
@@ -52,12 +52,12 @@ test('It calculates the diff for two different stats correctly', t => {
 
 	t.true(result.changed)
 	t.is(3, result.diff.length)
-	t.deepEqual(result.diff, expectedDiff)
+	t.deepEqual(result.diff, expected)
 })
 
 test('It calculates the diff correctly for two exact same stats', t => {
 	const result = diff(['item1', 'item2'], ['item1', 'item2'])
-	const expectedDiff = [
+	const expected = [
 		{
 			value: 'item1',
 			removed: false,
@@ -74,12 +74,12 @@ test('It calculates the diff correctly for two exact same stats', t => {
 
 	t.false(result.changed)
 	t.is(2, result.diff.length)
-	t.deepEqual(result.diff, expectedDiff)
+	t.deepEqual(result.diff, expected)
 })
 
 test('It handles the first listable stat being absent in one of the stats', t => {
 	const actual = diff(undefined, ['cat', 'dog'])
-	const expectedDiff = {
+	const expected = {
 		changed: true,
 		diff: [
 			{
@@ -97,12 +97,12 @@ test('It handles the first listable stat being absent in one of the stats', t =>
 		]
 	}
 
-	t.deepEqual(actual, expectedDiff)
+	t.deepEqual(actual, expected)
 })
 
 test('It handles the second listable stat being absent in one of the stats', t => {
 	const actual = diff(['cat', 'dog'], undefined)
-	const expectedDiff = {
+	const expected = {
 		changed: true,
 		diff: [
 			{
@@ -120,7 +120,7 @@ test('It handles the second listable stat being absent in one of the stats', t =
 		]
 	}
 
-	t.deepEqual(actual, expectedDiff)
+	t.deepEqual(actual, expected)
 })
 
 test('It sorts selectors/values/properties correctly', t => {
@@ -128,7 +128,7 @@ test('It sorts selectors/values/properties correctly', t => {
 		['a:after', 'a:before'],
 		['a:after', 'aa:before', 'b:before']
 	)
-	const expectedDiff = {
+	const expected = {
 		changed: true,
 		diff: [
 			{
@@ -158,7 +158,7 @@ test('It sorts selectors/values/properties correctly', t => {
 		]
 	}
 
-	t.deepEqual(actual, expectedDiff)
+	t.deepEqual(actual, expected)
 })
 
 test('It sorts fontsizes correctly after comparing them', t => {
@@ -167,7 +167,7 @@ test('It sorts fontsizes correctly after comparing them', t => {
 		['0', '.5em', '1em', '3rem'],
 		'values.fontsizes.unique'
 	)
-	const expectedDiff = {
+	const expected = {
 		changed: true,
 		diff: [
 			{
@@ -209,7 +209,7 @@ test('It sorts fontsizes correctly after comparing them', t => {
 		]
 	}
 
-	t.deepEqual(actual, expectedDiff)
+	t.deepEqual(actual, expected)
 })
 
 test('It sorts colors correctly after comparing them', t => {
@@ -218,7 +218,7 @@ test('It sorts colors correctly after comparing them', t => {
 		['red', 'yellow', 'green', 'blue', 'purple'],
 		'values.colors.unique'
 	)
-	const expectedDiff = {
+	const expected = {
 		changed: true,
 		diff: [
 			{
@@ -260,5 +260,50 @@ test('It sorts colors correctly after comparing them', t => {
 		]
 	}
 
-	t.deepEqual(actual, expectedDiff)
+	t.deepEqual(actual, expected)
+})
+
+test('it sorts zindexes correctly after comparing them', t => {
+	const actual = diff(
+		[-100, -1, 0, 1, 999],
+		[-100, 0, 1, 999],
+		'values.zindexes.unique'
+	)
+	const expected = {
+		changed: true,
+		diff: [
+			{
+				value: -100,
+				changed: false,
+				added: false,
+				removed: false
+			},
+			{
+				value: -1,
+				changed: true,
+				added: false,
+				removed: true
+			},
+			{
+				value: 0,
+				changed: false,
+				added: false,
+				removed: false
+			},
+			{
+				value: 1,
+				changed: false,
+				added: false,
+				removed: false
+			},
+			{
+				value: 999,
+				changed: false,
+				added: false,
+				removed: false
+			}
+		]
+	}
+
+	t.deepEqual(actual, expected)
 })
