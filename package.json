@@ -43,9 +43,9 @@
     "string-natural-compare": "^2.0.3"
   },
   "devDependencies": {
-    "ava": "^1.0.1",
-    "prettier": "^1.15.3",
-    "xo": "^0.23.0"
+    "ava": "^1.2.1",
+    "prettier": "^1.16.4",
+    "xo": "^0.24.0"
   },
   "xo": {
     "semicolon": false,
