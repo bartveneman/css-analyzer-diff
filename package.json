@@ -2,12 +2,12 @@
   "name": "css-analyzer-diff",
   "version": "1.1.4",
   "description": "Calculate the difference between two sets of CSS stats ",
-  "main": "diff.js",
+  "main": "src/diff.js",
   "engines": {
-    "node": ">= 7"
+    "node": ">= 8"
   },
   "scripts": {
-    "test": "ava && xo"
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -43,26 +43,7 @@
     "string-natural-compare": "^2.0.3"
   },
   "devDependencies": {
-    "ava": "^1.2.1",
-    "prettier": "^1.16.4",
-    "xo": "^0.24.0"
-  },
-  "xo": {
-    "semicolon": false,
-    "prettier": true
-  },
-  "prettier": {
-    "useTabs": true,
-    "semi": false,
-    "singleQuote": true,
-    "bracketSpacing": false,
-    "overrides": [
-      {
-        "files": "*.json",
-        "options": {
-          "useTabs": false
-        }
-      }
-    ]
+    "ava": "^2.3.0",
+    "prettier": "^1.16.4"
   }
 }

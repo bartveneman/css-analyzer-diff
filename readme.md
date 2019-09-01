@@ -13,14 +13,14 @@ Calculate the difference between two sets of [CSS stats](https://github.com/proj
 ## Usage
 
 ```js
-const differ = require('css-analyzer-diff')
-const analyzeCss = require('@projectwallace/css-analyzer')
+const differ = require("css-analyzer-diff");
+const analyzeCss = require("@projectwallace/css-analyzer");
 
 const [firstStats, secondStats] = await Promise.all([
-	analyzeCss('.cat { color: brown; }'),
-	analyzeCss('.cat { color: red; }')
-])
-const changes = differ(firstStats, secondStats)
+  analyzeCss(".cat { color: brown; }"),
+  analyzeCss(".cat { color: red; }")
+]);
+const changes = differ(firstStats, secondStats);
 
 //=> Returns an object with all changes
 // {
